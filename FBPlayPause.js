@@ -1,6 +1,7 @@
-var style = $("style");
-var selectors = "";
-selectors += "#ppControl { " +
+var FBPlayPause = FBPlayPause || {};
+FBPlayPause.style = $("style");
+FBPlayPause.selectors = "";
+FBPlayPause.selectors += "#ppControl { " +
 	"display: block;" + 
 	"clear: both;" + 
 	"overflow: hidden;" +
@@ -17,27 +18,27 @@ selectors += "#ppControl { " +
 	"background-image: linear-gradient(top, rgb(128, 128, 128), rgb(255, 255, 255));" +
 	"filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#808080', EndColorStr='#ffffff');" +
 " }";
-style.append(selectors);
+FBPlayPause.style.append(FBPlayPause.selectors);
 
-var ppControl = $(document.createElement("div")).attr("id", "ppControl")
+FBPlayPause.ppControl = $(document.createElement("div")).attr("id", "ppControl")
 	.html("&#x25B6");
-var gPPState = false;
-thisCase = function () {
+FBPlayPause.gPPState = false;
+FBPlayPause.thisCase = function () {
 	return document.location.href.split("?")[1].split("#")[0];
 }
-$(ppControl).click(function () {
-	gPPState = !gPPState;
-	if (gPPState) {
-		changeIxWorkingOn(thisCase);
-		ppControl.html("&#x275A&#x275A");
+$(FBPlayPause.ppControl).click(function () {
+	FBPlayPause.gPPState = !FBPlayPause.gPPState;
+	if (FBPlayPause.gPPState) {
+		changeIxWorkingOn(FBPlayPause.thisCase());
+		FBPlayPause.ppControl.html("&#x275A&#x275A");
 	} else {
 		changeIxWorkingOn(0);
-		ppControl.html("&#x25B6");
+		FBPlayPause.ppControl.html("&#x25B6");
 	}
 });
 var ixBug = $("div.ixBug");
-ixBug.append(ppControl);
-if ($("#Menu_Working_On").text().indexOf(thisCase()) > -1) {
-	ppControl.html("&#x275A&#x275A");
-	gPPState = true;
+ixBug.append(FBPlayPause.ppControl);
+if ($("#Menu_Working_On").text().indexOf(FBPlayPause.thisCase()) > -1) {
+	FBPlayPause.ppControl.html("&#x275A&#x275A");
+	FBPlayPause.gPPState = true;
 }
