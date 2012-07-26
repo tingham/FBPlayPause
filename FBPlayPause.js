@@ -5,8 +5,9 @@ selectors += "#ppControl { " +
 	"clear: both;" + 
 	"overflow: hidden;" +
 	"width: 44px; height: 44px;" +
-	"font-size: 32px; color: #000" +
+	"font-size: 32px; color: #000;" +
 	"text-align: center;" +
+	"-webkit-border-radius: 11px; -moz-border-radius: 11px; border-radius: 11px;" +
 	"background-color: #808080;" +
 	"background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(128, 128, 128)), to(rgb(255, 255, 255)));" +
 	"background-image: -webkit-linear-gradient(top, rgb(128, 128, 128), rgb(255, 255, 255));" +
@@ -19,19 +20,13 @@ selectors += "#ppControl { " +
 style.append(selectors);
 
 var ppControl = $(document.createElement("div")).attr("id", "ppControl")
-	.css("display", "block")
-	.css("clear", "both")
-	.css("overflow", "hidden")
-	.css("height", "44px")
-	.css("width", "44px")
-	// .css("background-color", "#808080")
-	.css("background-image", "linear-gradient(top, rgb(128, 128, 128), rgb(255, 255, 255))")
-	.css("font-size", "32px")
 	.html("&#x25B6");
 var gPPState = false;
+thisCase = function () {
+	return document.location.href.split("?")[1].split("#")[0];
+}
 $(ppControl).click(function () {
 	gPPState = !gPPState;
-	thisCase = document.location.href.split("?")[1].split("#")[0];
 	if (gPPState) {
 		changeIxWorkingOn(thisCase);
 		ppControl.html("&#x275A&#x275A");
@@ -42,3 +37,7 @@ $(ppControl).click(function () {
 });
 var ixBug = $("div.ixBug");
 ixBug.append(ppControl);
+if ($("#Menu_Working_On").text().indexOf(thisCase()) > -1) {
+	ppControl.html("&#x275A&#x275A");
+	gPPState = true;
+}
