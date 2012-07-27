@@ -71,6 +71,11 @@ $(FBPlayPause.ppControl).click(function () {
 		FBPlayPause.ppControl.html(FBPlayPause.labels.play);
 	}
 });
+window.addEventListener("keyup", function (evt) {
+	if (evt.keyCode == 84 && evt.shiftKey) {
+		FBPlayPause.ppControl.click();
+	}
+});
 var ixBug = $("div.ixBug");
 ixBug.append(FBPlayPause.ppControl);
 if ($("#Menu_Working_On").text().indexOf(FBPlayPause.thisCase()) > -1) {
