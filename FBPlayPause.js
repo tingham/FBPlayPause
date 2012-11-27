@@ -1,87 +1,22 @@
-/*global $, changeIxWorkingOn */
-
 var FBPlayPause = FBPlayPause || {};
-FBPlayPause.style = $("style");
-FBPlayPause.selectors = "";
-FBPlayPause.selectors += "#ppControl { " +
-	"display: block;" +
-	"clear: both;" +
-	"overflow: hidden;" +
-	"font-size: 28px; color: #555;" +
-	"height: 44px;" +
-	"width: 168px; " +
-	"line-height: 44px;" +
-	"-webkit-border-radius: 22px; -moz-border-radius: 22px; border-radius: 22px;" +
-	"border: 1px solid #444;" +
-	"cursor: hand;" +
-	"background-color: #808080;" +
-	"background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(128, 128, 128)), to(rgb(255, 255, 255)));" +
-	"background-image: -webkit-linear-gradient(top, rgb(128, 128, 128), rgb(255, 255, 255));" +
-	"background-image: -moz-linear-gradient(top, rgb(128, 128, 128), rgb(255, 255, 255));" +
-	"background-image: -o-linear-gradient(top, rgb(128, 128, 128), rgb(255, 255, 255));" +
-	"background-image: -ms-linear-gradient(top, rgb(128, 128, 128), rgb(255, 255, 255));" +
-	"background-image: linear-gradient(top, rgb(128, 128, 128), rgb(255, 255, 255));" +
-	"filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#808080', EndColorStr='#ffffff');" +
-	" } " +
-	"#ppControl:hover { " +
-	"color: #ccc;" +
-	"border-color: #09c;" +
-	"background-color: #606060;" +
-	"background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(64, 64, 64)), to(rgb(128, 128, 128)));" +
-	"background-image: -webkit-linear-gradient(top, rgb(64, 64, 64), rgb(128, 128, 128));" +
-	"background-image: -moz-linear-gradient(top, rgb(64, 64, 64), rgb(128, 128, 128));" +
-	"background-image: -o-linear-gradient(top, rgb(64, 64, 64), rgb(128, 128, 128));" +
-	"background-image: -ms-linear-gradient(top, rgb(64, 64, 64), rgb(128, 128, 128));" +
-	"background-image: linear-gradient(top, rgb(64, 64, 64), rgb(128, 128, 128));" +
-	"filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#606060', EndColorStr='#ffffff');" +
-	" } " +
-	"#ppControl span.symbol { " +
-	"display: block;" +
-	"float: left;" +
-	"padding: 4px 4px 4px 16px;" +
-	"border-right: 1px solid #444;" +
-	"height: 44px;" +
-	"line-height: 36px;" +
-	" } " +
-	"#ppControl span.label { " +
-	"display: block;" +
-	"float: left;" +
-	"padding: 4px 4px 4px 4px;" +
-	"border-left: 1px solid #ccc;" +
-	"font-size: 15px;" +
-	"font-weight: bold;" +
-	"height: 44px;" +
-	"line-height: 36px;" +
-	" } ";
-
-FBPlayPause.style.append(FBPlayPause.selectors);
 
 FBPlayPause.labels = {
-	play: "<span class=\"symbol\">&#x25B6</span><span class=\"label\">Record Time</span>",
-	pause: "<span class=\"symbol\">&#x275A&#x275A</span><span class=\"label\">Stop Recording</span>"
+	play: "<span class=\"symbol\">&#x25B6</span>",
+	pause: "<span class=\"symbol\">&#x275A&#x275A</span>"
 };
 
-FBPlayPause.ppControl = $(document.createElement("div")).attr("id", "ppControl")
-	.html(FBPlayPause.labels.play);
 FBPlayPause.gPPState = false;
+
 FBPlayPause.thisCase = function () {
 	"use strict";
+	var result = "";
 	if (document.location.href.indexOf("?") > -1) {
-		return document.location.href.split("?")[1].split("#")[0];
-	}
-};
-
-$(FBPlayPause.ppControl).click(function () {
-	"use strict";
-	FBPlayPause.gPPState = !FBPlayPause.gPPState;
-	if (FBPlayPause.gPPState) {
-		changeIxWorkingOn(FBPlayPause.thisCase());
-		FBPlayPause.ppControl.html(FBPlayPause.labels.pause);
+		result = document.location.href.split("?")[1].split("#")[0];
 	} else {
-		changeIxWorkingOn(0);
-		FBPlayPause.ppControl.html(FBPlayPause.labels.play);
+		result = "Nothing Selected";
 	}
-});
+	return result;
+};
 
 window.addEventListener("keyup", function (evt) {
 	"use strict";
@@ -92,11 +27,64 @@ window.addEventListener("keyup", function (evt) {
 
 FBPlayPause.Init = function () {
 	"use strict";
-	var ixBug = $("div.ixBug");
-	ixBug.append(FBPlayPause.ppControl);
-	if ($("#Menu_Working_On").text().indexOf(FBPlayPause.thisCase()) > -1) {
+	FBPlayPause.root = $('<div id="fbplaypauseroot"></div>');
+	var bumper = '<div class="fbplaypausebumper"></div>',
+		control = '<div id="fbplaypausecontrol" style="display:block;float:left;clear:none;overflow:hidden;background-color:#ccc;width:40%;height:44px;border-radius:5px;"></div>',
+		button = '<div id="fbplaypausebutton"></div>',
+		slug = '<div style="display:block;clear:both;width:100%;height:20px;background-color:#999;"></div>',
+		slugleft = $(slug).addClass("left"),
+		slugright = $(slug).addClass("right"),
+		display = '<div id="fbplaypausedisplay"><strong contenteditable="true"></strong><br /><em></em><div>';
+
+	control = $(control).append($(button)).append(display);
+
+	FBPlayPause.root.append($(bumper).append(slugleft), control, $(bumper).append(slugright));
+
+	$("body").prepend(FBPlayPause.root);
+
+	$("[contenteditable]").bind("focus", function (e) {
+		FBPlayPause.lastTrack = $(e.target).text();
+	});
+
+	$("[contenteditable]").bind('keyup', function (e) {
+		if (e.keyCode === 13) {
+			console.log("From: " + FBPlayPause.lastTrack + " to " + parseInt($(e.target).text().replace("#", ""), 10));
+			$(e.target).text($(e.target).text().replace("\n", ""));
+			return false;
+		}
+	});
+
+	FBPlayPause.ppControl = $("#fbplaypausebutton");
+	FBPlayPause.ppControl.click(function () {
+		FBPlayPause.gPPState = !FBPlayPause.gPPState;
+		if (FBPlayPause.gPPState) {
+			if (window["changeIxWorkingOn"]) {
+				changeIxWorkingOn(FBPlayPause.thisCase());
+			}
+			$("#fbplaypausedisplay strong").text("#" + FBPlayPause.thisCase());
+			$("#fbplaypausedisplay em").text("\"" + $("title").text() + "\"");
+			FBPlayPause.ppControl.html(FBPlayPause.labels.pause);
+		} else {
+			if (window["changeIxWorkingOn"]) {
+				changeIxWorkingOn(0);
+			}
+			FBPlayPause.ppControl.html(FBPlayPause.labels.play);
+		}
+	});
+
+	if ($("#Menu_Working_On").length > 0 &&
+			$("#Menu_Working_On").text().indexOf(FBPlayPause.thisCase()) > -1) {
 		FBPlayPause.ppControl.html(FBPlayPause.labels.pause);
+		$("#fbplaypausedisplay strong").text("#" + FBPlayPause.thisCase());
+		$("#idWorkingOnRecent nobr a").each(function (item) {
+			if ($(item).text().indexOf(FBPlayPause.thisCase()) > -1) {
+				$("#fbplaypausedisplay em").text("\"" + $(item).text() + "\"");
+			}
+		});
 		FBPlayPause.gPPState = true;
+	} else {
+		FBPlayPause.ppControl.html(FBPlayPause.labels.play);
+		FBPlayPause.gPPState = false;
 	}
 };
 

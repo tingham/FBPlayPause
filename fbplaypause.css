@@ -1,0 +1,112 @@
+#fbplaypauseroot {
+	margin-bottom: -24px;
+	position:relative;
+	display:block;
+	clear:both;
+	top:0px;
+	left:0px;
+	height:44px;
+	width:100%;
+}
+
+div.fbplaypausebumper {
+	display:block;
+	float:left;
+	clear:none;
+	overflow:hidden;
+	width:30%;
+	height:10px;
+	background-color:#f3f3f3;
+	padding-top:12px;
+}
+
+div.fbplaypausebumper div.left {
+	background-color: #cbcbcb;
+	background-image: -webkit-gradient(linear, left center, right center, from(rgb(203, 203, 203)), to(rgb(81, 81, 81)));
+	background-image: -webkit-linear-gradient(left, rgb(203, 203, 203), rgb(81, 81, 81));
+	background-image: -moz-linear-gradient(left, rgb(203, 203, 203), rgb(81, 81, 81));
+	background-image: -o-linear-gradient(left, rgb(203, 203, 203), rgb(81, 81, 81));
+	background-image: -ms-linear-gradient(left, rgb(203, 203, 203), rgb(81, 81, 81));
+	background-image: linear-gradient(left, rgb(203, 203, 203), rgb(81, 81, 81));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#cbcbcb', EndColorStr='#515151');
+}
+
+div.fbplaypausebumper div.right {
+	background-color: #515151;
+	background-image: -webkit-gradient(linear, left center, right center, from(rgb(81, 81, 81)), to(rgb(203, 203, 203)));
+	background-image: -webkit-linear-gradient(left, rgb(81, 81, 81), rgb(203, 203, 203));
+	background-image: -moz-linear-gradient(left, rgb(81, 81, 81), rgb(203, 203, 203));
+	background-image: -o-linear-gradient(left, rgb(81, 81, 81), rgb(203, 203, 203));
+	background-image: -ms-linear-gradient(left, rgb(81, 81, 81), rgb(203, 203, 203));
+	background-image: linear-gradient(left, rgb(81, 81, 81), rgb(203, 203, 203));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#515151', EndColorStr='#cbcbcb');
+}
+
+#fbplaypausecontrol {
+	background-color: #cbcbcb;
+	background-image: -webkit-gradient(linear, left top, right bottom, from(rgb(203, 203, 203)), to(rgb(146, 146, 146)));
+	background-image: -webkit-linear-gradient(left top, rgb(203, 203, 203), rgb(146, 146, 146));
+	background-image: -moz-linear-gradient(left top, rgb(203, 203, 203), rgb(146, 146, 146));
+	background-image: -o-linear-gradient(left top, rgb(203, 203, 203), rgb(146, 146, 146));
+	background-image: -ms-linear-gradient(left top, rgb(203, 203, 203), rgb(146, 146, 146));
+	background-image: linear-gradient(left top, rgb(203, 203, 203), rgb(146, 146, 146));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=1,StartColorStr='#cbcbcb', EndColorStr='#929292');
+	box-shadow: 0px 5px 10px #333;
+}
+
+#fbplaypausebutton {
+	display:block;
+	float:left;
+	clear:none;
+	overflow:hidden;
+	height:34px;
+	width:34px;
+	line-height:34px;
+	text-align:center;
+	color: #444;
+	background-image: -webkit-linear-gradient(left top, rgb(203, 203, 203), rgb(146, 146, 146));
+	background-image: linear-gradient(left top, rgb(203, 203, 203), rgb(146, 146, 146));
+	border-radius:16px;
+	border:1px solid #666;
+	margin:4px 0px 0px 4px;
+}
+
+#fbplaypausebutton:hover {
+	background-image: -webkit-linear-gradient(right bottom, rgb(203, 203, 203), rgb(146, 146, 146));
+	background-image: linear-gradient(right bottom, rgb(203, 203, 203), rgb(146, 146, 146));
+	color: #111;
+}
+
+#fbplaypausedisplay {
+	display:block;
+	float:left;
+	clear:none;
+	margin: 2px 4px 2px 4px;
+	width: 90%;
+	height: 38px;
+	border-radius: 5px;
+	border: 1px solid #333;
+	line-height: 19px;
+	text-align:center;
+	background-color: #bdbfb6;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(189, 191, 182)), to(rgb(184, 191, 182)));
+	background-image: -webkit-linear-gradient(top, rgb(189, 191, 182), rgb(184, 191, 182));
+	background-image: -moz-linear-gradient(top, rgb(189, 191, 182), rgb(184, 191, 182));
+	background-image: -o-linear-gradient(top, rgb(189, 191, 182), rgb(184, 191, 182));
+	background-image: -ms-linear-gradient(top, rgb(189, 191, 182), rgb(184, 191, 182));
+	background-image: linear-gradient(top, rgb(189, 191, 182), rgb(184, 191, 182));
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#bdbfb6', EndColorStr='#b8bfb6');
+}
+
+#fbplaypausedisplay strong {
+	color: #333;
+	font-family: Helvetica;
+	font-size: 14px;
+}
+
+#fbplaypausedisplay em {
+	color: #555;
+	font-family: Helvetica;
+	font-size: 12px;
+	font-style: normal;
+}
