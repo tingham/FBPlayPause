@@ -29,7 +29,7 @@ FBPlayPause.Init = function () {
 	"use strict";
 	FBPlayPause.root = $('<div id="fbplaypauseroot"></div>');
 	var bumper = '<div class="fbplaypausebumper"></div>',
-		control = '<div id="fbplaypausecontrol" style="display:block;float:left;clear:none;overflow:hidden;background-color:#ccc;width:40%;height:44px;border-radius:5px;"></div>',
+		control = '<div id="fbplaypausecontrol" style=""></div>',
 		button = '<div id="fbplaypausebutton"></div>',
 		slug = '<div style="display:block;clear:both;width:100%;height:20px;background-color:#999;"></div>',
 		slugleft = $(slug).addClass("left"),
@@ -40,7 +40,7 @@ FBPlayPause.Init = function () {
 
 	FBPlayPause.root.append($(bumper).append(slugleft), control, $(bumper).append(slugright));
 
-	$("body").prepend(FBPlayPause.root);
+	$("body").prepend('<div style="height:12px;"></div>', FBPlayPause.root);
 
 	$("[contenteditable]").bind("focus", function (e) {
 		FBPlayPause.lastTrack = $(e.target).text();
@@ -48,7 +48,10 @@ FBPlayPause.Init = function () {
 
 	$("[contenteditable]").bind('keyup', function (e) {
 		if (e.keyCode === 13) {
-			console.log("From: " + FBPlayPause.lastTrack + " to " + parseInt($(e.target).text().replace("#", ""), 10));
+			var to = parseInt($(e.target).text().replace("#", ""), 10);
+			if (to !== parseInt("Nan", 10)) {
+				document.location.href = document.location.href.split("?")[0] + "?" + to;
+			}
 			$(e.target).text($(e.target).text().replace("\n", ""));
 			return false;
 		}

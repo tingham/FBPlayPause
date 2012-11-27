@@ -1,6 +1,5 @@
 #fbplaypauseroot {
-	margin-bottom: -24px;
-	position:relative;
+	position:fixed;
 	display:block;
 	clear:both;
 	top:0px;
@@ -18,7 +17,6 @@ div.fbplaypausebumper {
 	width:30%;
 	height:10px;
 	background-color:#f3f3f3;
-	padding-top:12px;
 }
 
 div.fbplaypausebumper div.left {
@@ -44,6 +42,14 @@ div.fbplaypausebumper div.right {
 }
 
 #fbplaypausecontrol {
+	display:block;
+	float:left;
+	clear:none;
+	overflow:hidden;
+	width:39%;
+	height:44px;
+	border:1px solid #aaa;
+	border-radius:5px;
 	background-color: #cbcbcb;
 	background-image: -webkit-gradient(linear, left top, right bottom, from(rgb(203, 203, 203)), to(rgb(146, 146, 146)));
 	background-image: -webkit-linear-gradient(left top, rgb(203, 203, 203), rgb(146, 146, 146));
