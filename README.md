@@ -1,7 +1,7 @@
 FBPlayPause
 ===========
 
-![](./docs/screenshot.png)
+![](https://raw.github.com/tingham/FBPlayPause/master/docs/screenshot.png)
 
 Customization code for the excellent FogBugz software which adds a play / pause button to the case UI for logging time.
 
