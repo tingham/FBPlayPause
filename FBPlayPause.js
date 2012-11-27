@@ -1,3 +1,11 @@
+$(window).on('BugViewChange', function(e, data) {
+  FBPlayPause.Init();
+});
+
+$(document).ready(function (e, data) {
+  FBPlayPause.Init();
+});
+
 var FBPlayPause = FBPlayPause || {};
 FBPlayPause.style = $("style");
 FBPlayPause.selectors = "";
@@ -76,9 +84,12 @@ window.addEventListener("keyup", function (evt) {
 		FBPlayPause.ppControl.click();
 	}
 });
-var ixBug = $("div.ixBug");
-ixBug.append(FBPlayPause.ppControl);
-if ($("#Menu_Working_On").text().indexOf(FBPlayPause.thisCase()) > -1) {
-	FBPlayPause.ppControl.html(FBPlayPause.labels.pause);
-	FBPlayPause.gPPState = true;
-}
+
+FBPlayPause.Init = function () {
+	var ixBug = $("div.ixBug");
+	ixBug.append(FBPlayPause.ppControl);
+	if ($("#Menu_Working_On").text().indexOf(FBPlayPause.thisCase()) > -1) {
+		FBPlayPause.ppControl.html(FBPlayPause.labels.pause);
+		FBPlayPause.gPPState = true;
+	}
+};
